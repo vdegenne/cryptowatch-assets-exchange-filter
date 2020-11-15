@@ -8,11 +8,17 @@
         "https://cryptowat.ch/cards/assets"
       ],
       "js": [
-        "inject.js"
+        "inject-caef.js"
       ]
+    },
+    {
+      "matches": ["https://cryptowat.ch/charts/*"],
+      "js": ["inject-charts.js"]
     }
   ],
   "web_accessible_resources": [
-    "content.js"
+    "exchange-filter.js",
+    "charts.js",
+    "sounds/*"
   ]
 }

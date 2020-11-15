@@ -12,4 +12,12 @@ function injectScript(filePath,tag) {
   node.appendChild(script);
 }
 
-injectScript(chrome.extension.getURL('content.js'),'body');
+function injectAudio(filePath,tag) {
+  const node = document.getElementsByTagName(tag)[0];
+  const audio = new Audio(filePath)
+  audio.id = 'cuip-audio'
+  node.appendChild(audio)
+}
+
+injectScript(chrome.extension.getURL('charts.js'),'body');
+injectAudio(chrome.extension.getURL('sounds/tick.mp3'), 'body')
