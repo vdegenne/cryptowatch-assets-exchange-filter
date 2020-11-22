@@ -12,7 +12,8 @@
       ]
     },
     {
-      "matches": ["https://cryptowat.ch/charts/*"],
+      "matches": ["https://cryptowat.ch/charts/*",
+	      "https://trade.kraken.com/charts/*"],
       "js": ["inject-charts.js"]
     }
   ],
