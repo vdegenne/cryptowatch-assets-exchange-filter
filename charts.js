@@ -59,7 +59,7 @@ function registerEvents() {
     }
 
     if (e.key === 'c') {
-      const order = document.querySelector('.order-close-button');
+      const order = document.querySelector('button[title^=Cancel]');
       if (order) {
         order.click();
         selectCrossHair()
