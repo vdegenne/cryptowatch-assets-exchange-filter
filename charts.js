@@ -55,7 +55,8 @@ function registerEvents() {
     }
 
     if (e.key === 'F') {
-      document.querySelector('[data-testlabel="100%"]').click();
+      const button = [...document.querySelectorAll('._1_R9vNUDdcou2Z7JyNUxJO')].find(el => el.innerText === '100%');
+      button.click();
     }
 
     if (e.key === 'c') {
@@ -79,3 +80,11 @@ function registerEvents() {
 
 const ticker = new Ticker;
 registerEvents();
+
+
+setInterval(function () {
+  const alertButton = document.querySelector('h4 ~ button');
+  if (alertButton) {
+    alertButton.click();
+  }
+}, 1000)
