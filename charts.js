@@ -88,3 +88,20 @@ setInterval(function () {
     alertButton.click();
   }
 }, 1000)
+
+
+setTimeout(function () {
+  document.querySelectorAll('._2Xm5L0ngs7YD5FrtLPs4kW').forEach(el => {
+    el.style.border = '1px solid white'
+    const pr3 = el.querySelector('.pr-3')
+    pr3.innerText = pr3.innerText.slice(0, pr3.innerText.indexOf('/'))
+    el.querySelector('.price').remove()
+    console.log(pr3)
+    pr3.style.fontWeight = 900;
+  })
+
+  const name = document.createElement('div')
+  name.style = 'color:white;position:absolute;bottom:initial;right:0;left:initial;top:0;height:36px;font-size:24px;font-weight:900;display:flex;justify-content:center;align-items:center;color:black;background-color:white;padding:2px 8px'
+  name.innerText = window.location.pathname.match(/:(.*)-(.*)/)[1]
+  document.querySelector('.cw-canvas-container').appendChild(name)
+}, 500)
