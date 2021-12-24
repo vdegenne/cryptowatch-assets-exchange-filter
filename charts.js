@@ -1,6 +1,6 @@
 const buy_sell_buttons_box_selector = '.drjbJ90R8AjvqdheJpmWo.mHshZyJP1CX48b70yeGe_'
-const trading_form_container_selector = '#trading-form-container'
-const price_ticker_selector = '#price-ticker'
+// const trading_form_container_selector = '#trading-form-container'
+// const price_ticker_selector = '#price-ticker'
 const price_input_selector = '#op-price-input-0-0'
 
 class Ticker {
