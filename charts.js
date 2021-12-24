@@ -1,3 +1,5 @@
+const buy_sell_buttons_box_class = '.drjbJ90R8AjvqdheJpmWo.mHshZyJP1CX48b70yeGe_'
+
 class Ticker {
   element;
   lastPrice;
@@ -70,10 +72,12 @@ function registerEvents() {
     }
 
     if (e.key === 'b') {
-      document.querySelector('[data-testlabel="buy"]').click();
+      // document.querySelector('[data-testlabel="buy"]').click();
+      this.document.querySelector(buy_sell_buttons_box_class).querySelectorAll('button')[0].click()
     }
     if (e.key === 's') {
-      document.querySelector('[data-testlabel="sell"]').click();
+      // document.querySelector('[data-testlabel="sell"]').click();
+      this.document.querySelector(buy_sell_buttons_box_class).querySelectorAll('button')[1].click()
     }
   })
 }
