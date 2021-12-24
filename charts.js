@@ -1,4 +1,7 @@
-const buy_sell_buttons_box_class = '.drjbJ90R8AjvqdheJpmWo.mHshZyJP1CX48b70yeGe_'
+const buy_sell_buttons_box_selector = '.drjbJ90R8AjvqdheJpmWo.mHshZyJP1CX48b70yeGe_'
+const trading_form_container_selector = '#trading-form-container'
+const price_ticker_selector = '#price-ticker'
+const price_input_selector = '#op-price-input-0-0'
 
 class Ticker {
   element;
@@ -51,7 +54,16 @@ function selectCrossHair() {
 function registerEvents() {
   window.addEventListener('keypress', function (e) {
     if (e.key === 'f') {
-      ticker.click();
+      // ticker.click();
+      const price = parseFloat(document.title)
+      const input = this.document.querySelector(price_input_selector)
+      const reactPropsName = Object.getOwnPropertyNames(input).filter(name => name.indexOf('reactProps') >= 0)[0]
+      // console.log(input, reactPropsName)
+      input[reactPropsName].onChange({
+        currentTarget: { value: `${price}` }
+      })
+      input.focus()
+      // this.document.querySelector(price_input_selector).focus()
       // prevent tool change in the chart frame
       selectCrossHair();
     }
@@ -73,11 +85,11 @@ function registerEvents() {
 
     if (e.key === 'b') {
       // document.querySelector('[data-testlabel="buy"]').click();
-      this.document.querySelector(buy_sell_buttons_box_class).querySelectorAll('button')[0].click()
+      this.document.querySelector(buy_sell_buttons_box_selector).querySelectorAll('button')[0].click()
     }
     if (e.key === 's') {
       // document.querySelector('[data-testlabel="sell"]').click();
-      this.document.querySelector(buy_sell_buttons_box_class).querySelectorAll('button')[1].click()
+      this.document.querySelector(buy_sell_buttons_box_selector).querySelectorAll('button')[1].click()
     }
   })
 }
