@@ -1,25 +1,21 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "cryptowatch-assets-exchange-filter",
   "version": "1.0",
   "content_scripts": [
     {
       "matches": [
-        "https://cryptowat.ch/cards/assets"
+        "https://cryptowat.ch/charts/*",
+        "https://trade.kraken.com/charts/*"
       ],
-      "js": [
-        "inject-caef.js"
-      ]
-    },
-    {
-      "matches": ["https://cryptowat.ch/charts/*",
-	      "https://trade.kraken.com/charts/*"],
-      "js": ["inject-charts.js"]
+      "js": ["inject.js"],
+      "run_at": "document_end"
     }
   ],
-  "web_accessible_resources": [
-    "exchange-filter.js",
-    "charts.js",
-    "sounds/*"
+  "web_accessible_resources" : [
+    {
+      "resources": ["entry.js", "coinmarketcap.js"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }

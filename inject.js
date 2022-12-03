@@ -7,7 +7,7 @@
 function injectScript(filePath,tag) {
   const node = document.getElementsByTagName(tag)[0];
   const script = document.createElement('script');
-  script.setAttribute('type','text/javascript');
+  script.setAttribute('type','module');
   script.setAttribute('src',filePath);
   node.appendChild(script);
 }
@@ -19,5 +19,5 @@ function injectAudio(filePath,tag) {
   node.appendChild(audio)
 }
 
-injectScript(chrome.extension.getURL('charts.js'),'body');
-injectAudio(chrome.extension.getURL('sounds/tick.mp3'), 'body')
+injectScript(chrome.runtime.getURL('entry.js'),'body');
+// injectAudio(chrome.extension.getURL('sounds/tick.mp3'), 'body')

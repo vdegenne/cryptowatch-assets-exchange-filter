@@ -2,3 +2,32 @@
 # yarn lockfile v1
 
 
+"@types/chrome@^0.0.203":
+  "integrity" "sha512-JlQNebwpBETVc8U1Rr2inDFuOTtn0lahRAhnddx1dd0S5RrLAFJEEsyIu7AXI14mkCgSunksnuLGioH8kvBqRA=="
+  "resolved" "https://registry.npmjs.org/@types/chrome/-/chrome-0.0.203.tgz"
+  "version" "0.0.203"
+  dependencies:
+    "@types/filesystem" "*"
+    "@types/har-format" "*"
+
+"@types/filesystem@*":
+  "integrity" "sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ=="
+  "resolved" "https://registry.npmjs.org/@types/filesystem/-/filesystem-0.0.32.tgz"
+  "version" "0.0.32"
+  dependencies:
+    "@types/filewriter" "*"
+
+"@types/filewriter@*":
+  "integrity" "sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ=="
+  "resolved" "https://registry.npmjs.org/@types/filewriter/-/filewriter-0.0.29.tgz"
+  "version" "0.0.29"
+
+"@types/har-format@*":
+  "integrity" "sha512-rffW6MhQ9yoa75bdNi+rjZBAvu2HhehWJXlhuWXnWdENeuKe82wUgAwxYOb7KRKKmxYN+D/iRKd2NDQMLqlUmg=="
+  "resolved" "https://registry.npmjs.org/@types/har-format/-/har-format-1.2.9.tgz"
+  "version" "1.2.9"
+
+"coinmarketcap-s2l@^1.0.1":
+  "integrity" "sha512-XxI6DqOBWNeSrkq4Ot0zV/SdEL4YINYyeKvoHtonUX5iFsB0I/yMkCpFAjFlZ2d/rxrLcTH61LL033d08gSedw=="
+  "resolved" "https://registry.npmjs.org/coinmarketcap-s2l/-/coinmarketcap-s2l-1.0.1.tgz"
+  "version" "1.0.1"

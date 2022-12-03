@@ -1,7 +1,11 @@
 const buy_sell_buttons_box_selector = '.drjbJ90R8AjvqdheJpmWo.mHshZyJP1CX48b70yeGe_'
 // const trading_form_container_selector = '#trading-form-container'
 // const price_ticker_selector = '#price-ticker'
-const price_input_selector = '#op-price-input-0-0'
+const price_input_selector = "[id^='op-price-input-']"
+
+function getButton (textContent) {
+  return [...document.querySelectorAll('button')].filter(el => el.textContent.trim() == textContent)[0]
+}
 
 class Ticker {
   element;
@@ -69,7 +73,7 @@ function registerEvents() {
     }
 
     if (e.key === 'F') {
-      const button = [...document.querySelectorAll('._1_R9vNUDdcou2Z7JyNUxJO')].find(el => el.innerText === '100%');
+      const button = getButton('100%')
       button.click();
     }
 
@@ -106,18 +110,70 @@ setInterval(function () {
 }, 1000)
 
 
-setTimeout(function () {
-  document.querySelectorAll('._2Xm5L0ngs7YD5FrtLPs4kW').forEach(el => {
-    el.style.border = '1px solid white'
-    const pr3 = el.querySelector('.pr-3')
-    pr3.innerText = pr3.innerText.slice(0, pr3.innerText.indexOf('/'))
-    el.querySelector('.price').remove()
-    console.log(pr3)
-    pr3.style.fontWeight = 900;
-  })
+// setTimeout(async function () {
+  // document.querySelectorAll('._2Xm5L0ngs7YD5FrtLPs4kW').forEach(el => {
+  //   console.log(el)
+  //   el.style.border = '1px solid white'
+  //   const pr3 = el.querySelector('.pr-3')
+  //   pr3.innerText = pr3.innerText.slice(0, pr3.innerText.indexOf('/'))
+  //   el.querySelector('.price').remove()
+  //   console.log(pr3)
+  //   pr3.style.fontWeight = 900;
+  // })
+async function main () {
+  try {
+    console.log('Waiting for the element')
+    const el = await getElement('.cw-canvas-container')
+    console.log(el)
+  // document.querySelector().appendChild(name)
+  } catch (e) {
 
-  const name = document.createElement('div')
-  name.style = 'color:white;position:absolute;bottom:initial;right:0;left:initial;top:0;height:36px;font-size:24px;font-weight:900;display:flex;justify-content:center;align-items:center;color:black;background-color:white;padding:2px 8px'
-  name.innerText = window.location.pathname.match(/:(.*)-(.*)/)[1]
-  document.querySelector('.cw-canvas-container').appendChild(name)
-}, 500)
+    console.log(e)
+    console.warn('Something went wrong')
+  }
+  // const name = document.createElement('div')
+  // name.style = 'color:white;position:absolute;bottom:initial;right:0;left:initial;top:0;height:36px;font-size:24px;font-weight:900;display:flex;justify-content:center;align-items:center;color:black;background-color:white;padding:2px 8px'
+  // name.innerText = window.location.pathname.match(/:(.*)-(.*)/)[1]
+  // console.log(document.querySelector('.cw-canvas-container'))
+// }, 500)
+}
+
+main()
+
+
+
+
+
+
+
+
+// export function getElement(selector, timeoutMs = 9000) {
+//   let resolve, reject, isResolved = false
+
+//   const promise = new Promise((res, rej) => {
+//     resolve = res
+//     reject = rej
+//   })
+
+//   window.setTimeout(() => {
+//     if (!isResolved) {
+//       reject()
+//       isResolved = true
+//     }
+//   }, timeoutMs)
+
+//   /* loop */
+//   (async function () {
+//     let element;
+//     while (!isResolved) {
+//       element = document.querySelector(selector)
+//       if (element) {
+//         resolve(element)
+//         isResolved = true
+//       }
+//       await new Promise(r => window.setTimeout(r, 250))
+//     }
+//   })();
+
+//   return promise;
+// }
