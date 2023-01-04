@@ -1,4 +1,6 @@
 import coinmarketcapUrl from './coinmarketcap.js'
+import { SELECTORS, selectCrossHair, getElement, getElementFromContent } from './utils.js'
+
 
 async function main () {
   try {
@@ -16,47 +18,46 @@ async function main () {
   } catch (e) {
     console.warn('Something went wrong here')
   }
+
+
+
+  /* Events */
+  document.addEventListener('keydown', async (e) => {
+    if (e.key == 'f') {
+      const price = parseFloat(document.title)
+      const input = document.querySelector(SELECTORS.priceInput)
+      const reactPropsName = Object.getOwnPropertyNames(input).filter(name => name.indexOf('reactProps') >= 0)[0]
+      // console.log(input, reactPropsName)
+      input[reactPropsName].onChange({
+        currentTarget: { value: `${price}` }
+      })
+      // input.unfocus()
+      // prevent tool change in the chart frame
+      selectCrossHair()
+    }
+    else if (e.key == 'F') {
+      const button = await getElement(() => getElementFromContent('100%'))
+      button?.click();
+    }
+    else if (e.code == 'KeyB') {
+      const button = await getElement(() => getElementFromContent('Buy'))
+      button?.click()
+    }
+    else if (e.code == 'KeyS') {
+      const button = await getElement(() => getElementFromContent('Sell'))
+      button?.click()
+    }
+    else if (e.code == 'Enter') {
+      let button;
+      try {
+        button = await getElement(() => getElementFromContent(/^Review and/), 200)
+      } catch (e) {
+        button = await getElement(() => getElementFromContent(/^Confirm /), 200)
+      }
+      button?.click()
+    }
+  })
 }
 
 
 main()
-
-
-
-
-
-
-
-
-
-
-function getElement(selector, timeoutMs = 9000) {
-  let resolve, reject, isResolved = false
-
-  const promise = new Promise((res, rej) => {
-    resolve = res
-    reject = rej
-  })
-
-  setTimeout(function () {
-    if (!isResolved) {
-      reject()
-      isResolved = true
-    }
-  }, timeoutMs)
-
-  /* loop */
-  ;(async function () {
-    let element;
-    while (!isResolved) {
-      element = document.querySelector(selector)
-      if (element) {
-        resolve(element)
-        isResolved = true
-      }
-      await new Promise(r => window.setTimeout(r, 250))
-    }
-  })();
-
-  return promise;
-}

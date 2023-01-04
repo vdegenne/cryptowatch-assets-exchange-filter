@@ -1,3 +1,14 @@
+export const SELECTORS = {
+  priceInput: '[id^="op-price-input-"]',
+  crosshairIcon: '.icon-drawing-crosshair',
+}
+
+export function getElementFromContent (textContent, typeSelector = 'button') {
+  if (typeof textContent == 'string') {
+    textContent = new RegExp(textContent)
+  }
+  return [...document.querySelectorAll(typeSelector)].filter(el => el.textContent.trim().match(textContent))[0]
+}
 
 export function getElement(selector, timeoutMs = 9000) {
   let resolve, reject, isResolved = false
@@ -15,17 +26,38 @@ export function getElement(selector, timeoutMs = 9000) {
   }, timeoutMs)
 
   /* loop */
-  (async function () {
+  ;(async function () {
     let element;
     while (!isResolved) {
-      element = document.querySelector(selector)
+
+      switch (typeof selector) {
+        case 'string':
+          element = document.querySelector(selector)
+          break;
+        case 'function':
+          element = selector()
+          break;
+        default:
+          throw new Error('unknown type')
+      }
+
       if (element) {
         resolve(element)
         isResolved = true
       }
-      await new Promise(r => setTimeout(r, 250))
+
+      await sleep(250)
     }
   })();
 
   return promise;
+}
+
+export function sleep(ms = 1000) {
+  return new Promise(r => setTimeout(r, ms))
+}
+
+export async function selectCrossHair() {
+  await sleep(10)
+  document.querySelector(SELECTORS.crosshairIcon).dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
 }

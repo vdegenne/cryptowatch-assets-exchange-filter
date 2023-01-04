@@ -3,9 +3,6 @@ const buy_sell_buttons_box_selector = '.drjbJ90R8AjvqdheJpmWo.mHshZyJP1CX48b70ye
 // const price_ticker_selector = '#price-ticker'
 const price_input_selector = "[id^='op-price-input-']"
 
-function getButton (textContent) {
-  return [...document.querySelectorAll('button')].filter(el => el.textContent.trim() == textContent)[0]
-}
 
 class Ticker {
   element;
@@ -56,7 +53,7 @@ function selectCrossHair() {
 }
 
 function registerEvents() {
-  window.addEventListener('keypress', function (e) {
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'f') {
       // ticker.click();
       const price = parseFloat(document.title)
@@ -72,10 +69,6 @@ function registerEvents() {
       selectCrossHair();
     }
 
-    if (e.key === 'F') {
-      const button = getButton('100%')
-      button.click();
-    }
 
     if (e.key === 'c') {
       const order = document.querySelector('button[title^=Cancel]');
