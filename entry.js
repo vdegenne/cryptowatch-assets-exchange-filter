@@ -27,9 +27,11 @@ async function main () {
       const price = parseFloat(document.title)
       const input = document.querySelector(SELECTORS.priceInput)
       const reactPropsName = Object.getOwnPropertyNames(input).filter(name => name.indexOf('reactProps') >= 0)[0]
-      // console.log(input, reactPropsName)
+      // console.log(input, reactPropsName, price)
+
+      console.log(input[reactPropsName].onChange)
       input[reactPropsName].onChange({
-        currentTarget: { value: `${price}` }
+        target: { value: `${price}` }
       })
       // input.unfocus()
       // prevent tool change in the chart frame
